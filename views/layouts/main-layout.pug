@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+html(lang="en")
+   head
+      meta(charset="UTF-8")
+      meta(name="viewport", content="width=device-width, initial-scale=1.0")
+      meta(http-equiv="X-UA-Compatible", content="ie=edge")
+      link(rel="stylesheet", href="/css/normalize.css")
+      link(rel="stylesheet", href="/css/main.css")
+      title #{title}
+   body
+      header
+         nav.navbar
+            div.container
+               ul.nav-list
+                  li
+                     a(href="/", class=(path === '/' ? 'active' : '')) Home
+                  li
+                     a(href="/cart", class=(path === '/cart' ? 'active' : '')) Cart
+                  li
+                     a(href="/orders", class=(path === '/orders' ? 'active' : '')) Orders
+                  li
+                     a(href="/admin/add-product", class=(path === '/add-product' ? 'active' : '')) Add-product
+                  li
+                     a(href="/admin/products", class=(path === '/products' ? 'active' : '')) Admin-products
+                  li
+                     a(href="/admin/manage-products", class=(path === '/manage-products' ? 'active' : '')) Manage-products
+
+      block content
