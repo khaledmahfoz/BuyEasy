@@ -5,34 +5,15 @@ body{
 }
 nav.navbar{
    background-color: #F4F7F6;
-   min-height: 60px;
+   min-height: 75px;
+}
+li.nav-item{
+   margin: 0 16px;
 }
 a.nav-link{
    color: #2b2b2b !important;
-   font-size: 18px
+   font-size: 17px
 }
 .active{
    text-decoration: underline !important
 }
-/* .navbar{
-   height: 80px;
-   background-color: #F4F7F6;
-}
-.nav-list{
-   display: flex;
-   align-items: center;
-   height: 100%;
-   list-style: none;
-   padding: 0;
-   margin: 0;
-}
-.nav-list li{
-   margin: 0 20px;
-}
-.nav-list li a{
-   text-decoration: none;
-   color: #2b2b2b;
-}
-.active{
-   text-decoration: underline !important;
-} */

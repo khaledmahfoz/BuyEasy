@@ -1,5 +1,29 @@
 extends ../layouts/main-layout
-
+block styles
+   link(rel="stylesheet", href="/css/form.css")
 block content
-   div.container
-      h3 add product
+   main
+      .container
+         .row.justify-content-center
+            .col.form-col
+               .logoImg
+                  img(src="/assets/images/BigLogo.png", alt="logo")
+               form(class="form-frame" action="/admin/add-product" method="POST")
+
+                  div.form-group
+                     label(for="title") Title
+                     input(type="text" name="title" id="title" class="form-control")
+
+                  div.form-group
+                     label(for="imgUrl") Image url
+                     input(type="text" name="imgUrl" id="imgUrl" class="form-control")
+                  
+                  div.form-group
+                     label(for="price") Price
+                     input(type="number" name="price" id="price" class="form-control")
+                  
+                  div.form-group
+                     label(for="description") Description
+                     textarea(name="description" id="description", row="5" class="form-control")
+
+                  button(class="btn btn-primary" type="submit") Add Product           
