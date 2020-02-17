@@ -1,0 +1,25 @@
+.card{
+   margin: 30px;
+}
+.card-body{
+   text-align: center;
+}
+.card-title{
+   font-weight: bold;
+}
+.card-text{
+   font-size: 20px;
+}
+.btnBox{
+   display: flex;
+   justify-content: space-evenly;
+}
+.btnBox a{
+   min-width: 80px;
+   min-height: 35px;
+}
+.prodImg{
+   height: 18rem;
+   background-size: cover !important;
+   background-position: center center !important;
+}

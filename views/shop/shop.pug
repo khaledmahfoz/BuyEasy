@@ -1,4 +1,24 @@
 extends ../layouts/main-layout
-
+block styles
+   link(rel="stylesheet", href="/css/product.css")
 block content
-   h1 shop products
+   main
+      .container
+         .row.justify-content-center
+            if products.length > 0
+               each product in products
+                  //- -console.log(product)
+                  .col.d-flex.justify-content-center
+                     .card(style='width: 18rem')
+                        div.prodImg(style=`background: url(${product.imgUrl})`)
+                        .card-body
+                           h3.card-title #{product.title}
+                           p.card-text #{product.price + '$'}
+                           div.btnBox
+                              a.btn.btn-outline-info(href=`/product/${product._id}`) Details
+                              a.btn.btn-success(href='#') Add to cart
+            else
+               .col
+                  h1 No products
+    
+            

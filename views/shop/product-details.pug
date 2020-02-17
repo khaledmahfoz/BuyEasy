@@ -1,0 +1,17 @@
+extends ../layouts/main-layout.pug
+block styles
+   link(rel="stylesheet", href="/css/details.css")
+block content
+   main.detail-main
+      .container
+         .row
+            .col-lg-6.order-lg-12.text-center
+               img(src= product.imgUrl, alt="product", class="img-fluid detail-img")
+
+            .col-lg-6.order-lg-1.d-flex.flex-column.justify-content-start
+               h1.detail-title #{product.title}
+               div.detail-description #{product.description}
+               p.detail-price #{product.price + '$'}
+               a.detail-button.btn.btn-primary Add to cart
+               
+               

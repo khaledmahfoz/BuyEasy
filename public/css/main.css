@@ -17,3 +17,6 @@ a.nav-link{
 .active{
    text-decoration: underline !important
 }
+main{
+   padding: 50px;
+}
