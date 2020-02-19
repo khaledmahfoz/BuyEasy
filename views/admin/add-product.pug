@@ -8,22 +8,49 @@ block content
             .col.form-col
                .logoImg
                   img(src="/assets/images/BigLogo.png", alt="logo")
-               form(class="form-frame" action="/admin/add-product" method="POST")
 
-                  div.form-group
-                     label(for="title") Title
-                     input(type="text" name="title" id="title" class="form-control")
+               if !editMode
+                  form(class="form-frame" action="/admin/add-product/" method="POST")
 
-                  div.form-group
-                     label(for="imgUrl") Image url
-                     input(type="text" name="imgUrl" id="imgUrl" class="form-control")
-                  
-                  div.form-group
-                     label(for="price") Price
-                     input(type="number" name="price" id="price" class="form-control")
-                  
-                  div.form-group
-                     label(for="description") Description
-                     textarea(name="description" id="description", row="5" class="form-control")
+                     div.form-group
+                        label(for="title") Title
+                        input(type="text" name="title" id="title" class="form-control")
 
-                  button(class="btn btn-primary" type="submit") Add Product           
+                     div.form-group
+                        label(for="imgUrl") Image url
+                        input(type="text" name="imgUrl" id="imgUrl" class="form-control")
+                     
+                     div.form-group
+                        label(for="price") Price
+                        input(type="number" name="price" id="price" class="form-control")
+                     
+                     div.form-group
+                        label(for="description") Description
+                        textarea(name="description" id="description", row="5" class="form-control")
+
+                     button(class="btn btn-primary" type="submit") Add Product
+
+                     input(type="hidden", name="_csrf", value= csrfToken)
+               else
+
+                  form(class="form-frame" action=`/admin/edit-product/${product._id}` method="POST")
+
+                     div.form-group
+                        label(for="title") Title
+                        input(type="text" name="title" id="title" class="form-control" value=product.title)
+
+                     div.form-group
+                        label(for="imgUrl") Image url
+                        input(type="text" name="imgUrl" id="imgUrl" class="form-control" value=product.imgUrl)
+                     
+                     div.form-group
+                        label(for="price") Price
+                        input(type="number" name="price" id="price" class="form-control" value=product.price)
+                     
+                     div.form-group
+                        label(for="description") Description
+                        textarea(name="description" id="description", row="5" class="form-control") #{product.description}
+
+                     button(class="btn btn-primary" type="submit") Edit Product
+
+                     input(type="hidden", name="_csrf", value= csrfToken)

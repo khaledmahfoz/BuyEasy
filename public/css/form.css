@@ -12,3 +12,10 @@ form.form-frame{
    margin: 50px 0;
    padding: 40px 30px;
 }
+form .headline{
+   font-weight: bold;
+   margin-bottom: 40px;
+}
+form .headline2{
+   margin-top: 40px;
+}

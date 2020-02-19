@@ -14,21 +14,36 @@ html(lang="en")
 
             button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
                span.navbar-toggler-icon
-
-            div#navbarNav.collapse.navbar-collapse
+               
+            div#navbarNav.collapse.navbar-collapse.justify-content-between
                ul.navbar-nav
                   li.nav-item
                      a.nav-link(href="/", class=(path === '/' ? 'active' : '')) Home
-                  li.nav-item
-                     a.nav-link(href="/cart", class=(path === '/cart' ? 'active' : '')) Cart
-                  li.nav-item
-                     a.nav-link(href="/orders", class=(path === '/orders' ? 'active' : '')) Orders
-                  li.nav-item
-                     a.nav-link(href="/admin/add-product", class=(path === '/add-product' ? 'active' : '')) Add-product
-                  li.nav-item
-                     a.nav-link(href="/admin/products", class=(path === '/products' ? 'active' : '')) Admin-products
-                  li.nav-item
-                     a.nav-link(href="/admin/manage-products", class=(path === '/manage-products' ? 'active' : '')) Manage-products
+                  if(isLoggedIn)
+                     li.nav-item
+                        a.nav-link(href="/cart", class=(path === '/cart' ? 'active' : '')) Cart
+                     li.nav-item
+                        a.nav-link(href="/orders", class=(path === '/orders' ? 'active' : '')) Orders
+                     li.nav-item
+                        a.nav-link(href="/admin/add-product", class=(path === '/add-product' ? 'active' : '')) Add-product
+                     li.nav-item
+                        a.nav-link(href="/admin/products", class=(path === '/products' ? 'active' : '')) Admin-products
+                     li.nav-item
+                        a.nav-link(href="/admin/manage-products", class=(path === '/manage-products' ? 'active' : '')) Manage-products
+
+               ul.navbar-nav
+                  if(isLoggedIn)
+                     li.nav-item
+                        form(action="/logout", method="post")
+                           button.btn.btn-danger(type="submit") Logout
+                           input(type="hidden", name="_csrf", value= csrfToken)
+                  else
+                     li.nav-item
+                        a.nav-link(href="/signup", class=(path === '/signup' ? 'active' : '')) Signup
+
+                     li.nav-item
+                        a.nav-link(href="/login", class=(path === '/login' ? 'active' : '')) Login
+
 
       block content
 

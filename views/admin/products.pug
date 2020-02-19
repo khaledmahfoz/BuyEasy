@@ -14,10 +14,11 @@ block content
                            h3.card-title #{product.title}
                            p.card-text #{product.price + '$'}
                            div.btnBox
-                              a.btn.btn-success(href='#') Edit
-                              a.btn.btn-danger(href='#') Delete
+                              a.btn.btn-success(href=`/admin/edit-product/${product._id}?edit=true`) Edit
+                              form(action="/admin/delete-product", method="post")
+                                 button.btn.btn-danger(type='submit') Delete
+                                 input(type="hidden", name="product", value=product._id)
             else
-               .col
-                  h1 No products
+               h1.mt-5 No products
     
             

@@ -7,7 +7,6 @@ block content
          .row.justify-content-center
             if products.length > 0
                each product in products
-                  //- -console.log(product)
                   .col.d-flex.justify-content-center
                      .card(style='width: 18rem')
                         div.prodImg(style=`background: url(${product.imgUrl})`)
@@ -18,7 +17,6 @@ block content
                               a.btn.btn-outline-info(href=`/product/${product._id}`) Details
                               a.btn.btn-success(href='#') Add to cart
             else
-               .col
-                  h1 No products
+               h1.mt-5 No products
     
             
