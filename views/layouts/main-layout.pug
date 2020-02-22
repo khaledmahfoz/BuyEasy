@@ -24,12 +24,13 @@ html(lang="en")
                         a.nav-link(href="/cart", class=(path === '/cart' ? 'active' : '')) Cart
                      li.nav-item
                         a.nav-link(href="/orders", class=(path === '/orders' ? 'active' : '')) Orders
-                     li.nav-item
-                        a.nav-link(href="/admin/add-product", class=(path === '/add-product' ? 'active' : '')) Add-product
-                     li.nav-item
-                        a.nav-link(href="/admin/products", class=(path === '/products' ? 'active' : '')) Admin-products
-                     li.nav-item
-                        a.nav-link(href="/admin/manage-products", class=(path === '/manage-products' ? 'active' : '')) Manage-products
+                     if(isAdmin)
+                        li.nav-item
+                           a.nav-link(href="/admin/add-product", class=(path === '/add-product' ? 'active' : '')) Add-product
+                        li.nav-item
+                           a.nav-link(href="/admin/products", class=(path === '/products' ? 'active' : '')) Admin-products
+                        li.nav-item
+                           a.nav-link(href="/admin/manage-products", class=(path === '/manage-products' ? 'active' : '')) Manage-products
 
                ul.navbar-nav
                   if(isLoggedIn)

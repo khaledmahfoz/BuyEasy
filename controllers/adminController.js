@@ -1,4 +1,5 @@
 const Product = require('../models/products')
+const Order = require('../models/orders')
 
 exports.getAddProduct = (req, res, next) => {
    const editMode = req.query.edit
@@ -69,5 +70,8 @@ exports.deleteProduct = (req, res, next) => {
 }
 
 exports.getManageProducts = (req, res, next) => {
-   res.render('admin/manage-products', {title: 'manage products', path: '/manage-products'})
+   Order.find({'products.product.userId': req.user._id})
+      .then(orders => {
+         res.render('admin/manage-products', {title: 'manage products', path: '/manage-products', orders})
+      })
 }

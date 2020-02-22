@@ -1,4 +1,38 @@
 extends ../layouts/main-layout
-
 block content
-   h1 manage products
+   main
+      .row.justify-content-center
+         if orders.length > 0
+            .col-lg-10
+               table.table.text-center
+                  thead
+                     tr
+                        th(scope='col') Email
+                        th(scope='col') Title
+                        th(scope='col') Quantity
+                        th(scope='col') Total price
+                        th(scope='col') Address
+                        th(scope='col') State
+                  each order in orders
+                     tbody
+                        tr
+                           -const prod = order.products
+                           th.font-weight-normal(scope='row') #{order.user.email}
+                           td #{prod.product.title}
+                           td #{prod.quantity}
+                           td #{prod.product.price * prod.quantity}$
+                           td #{order.user.address}
+                           td #{prod.state}
+
+                        //- td 
+                        //-    form(action="/orders", method="post")
+                        //-       button.btn.btn-success(type='submit') Order
+                        //-       input(type="hidden", name="_csrf", value=csrfToken)
+                        //-       input(type="hidden", name="productId", value= item.productId._id)
+                        //- td
+                        //-    form(action="/cart-delete", method="post")
+                        //-       button.btn.btn-danger(type='submit') Delete
+                        //-       input(type="hidden", name="_csrf", value=csrfToken)
+                        //-       input(type="hidden", name="productId", value= item.productId._id)
+         else
+            h1 No orders to display

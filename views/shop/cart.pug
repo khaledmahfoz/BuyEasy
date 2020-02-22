@@ -29,7 +29,7 @@ block content
                .card
                   .card-body
                      h3.mb-4.card-title Total Price
-                     h6.card-subtitle.mb-2 12$
+                     h6.card-subtitle.mb-2 #{totalPrice}$
                      form.mt-4(action="/orders", method="post")
                         button.btn.btn-success.btn-block(type='submit') Order
                         input(type="hidden", name="_csrf", value=csrfToken)

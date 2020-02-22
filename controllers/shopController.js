@@ -23,7 +23,14 @@ exports.getCart = (req, res, next) => {
       .populate('cart.items.productId')
       .execPopulate()
       .then(user => {
-         res.render('shop/cart', {title: 'cart', path: '/cart', cart: user.cart.items})
+         let totalPrice = 0
+         if(user.cart.items.length > 0){
+            const totalPriceArray = user.cart.items.map(elem => {
+               return elem.productId.price * elem.quantity
+            })
+            totalPrice = totalPriceArray.reduce((a, b) => a + b)
+         }
+         res.render('shop/cart', {title: 'cart', path: '/cart', cart: user.cart.items, totalPrice})
       })
 }
 
@@ -44,8 +51,11 @@ exports.postOrders = (req, res, next) => {
          })
          return Order.insertMany(products)
       })
-      .then((orders) => {
-         res.render('shop/orders', {title: 'orders', path: '/orders', orders})
+      .then(() => {
+         req.user.clearCart()
+      })
+      .then(() => {
+         res.redirect('/orders')
       })
       .catch(err => console.log(err))
 }

@@ -28,6 +28,9 @@ app.use(csrf())
 app.use((req, res, next) => {
    res.locals.isLoggedIn = req.session.isLoggedIn
    res.locals.csrfToken = req.csrfToken()
+   if(req.session.user){
+      res.locals.isAdmin = req.session.user.isAdmin
+   }
    next()
 })
 

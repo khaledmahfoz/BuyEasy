@@ -19,6 +19,11 @@ const userSchema = new Schema({
       type: String,
       required: true
    },
+   isAdmin:{
+      type: Boolean,
+      required: false,
+      default: false
+   },
    cart: {
       items: [
         {
@@ -62,5 +67,10 @@ userSchema.methods.removeFromCart = function(product) {
    this.cart = updatedCart
    return this.save()
 }
+
+userSchema.methods.clearCart = function() {
+   this.cart = { items: [] };
+   return this.save();
+ };
 
 module.exports = mongoose.model('User', userSchema);

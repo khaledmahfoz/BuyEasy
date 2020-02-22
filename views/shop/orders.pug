@@ -5,8 +5,8 @@ block content
 block content
    main
       .row.justify-content-center
-         .col-lg-10
-            if orders.length > 0
+         if orders.length > 0
+            .col-lg-10
                table.table.text-center
                   thead
                      tr
@@ -15,7 +15,7 @@ block content
                         th(scope='col') Total price
                         th(scope='col') State
                   each order in orders
-                     tbody
+                     tbody.mb-3
                         tr
                            -const prod = order.products
                            th.font-weight-normal(scope='row') #{prod.product.title}
@@ -33,5 +33,5 @@ block content
                         //-       button.btn.btn-danger(type='submit') Delete
                         //-       input(type="hidden", name="_csrf", value=csrfToken)
                         //-       input(type="hidden", name="productId", value= item.productId._id)
-            else
-               h1 The cart is empty
+         else
+            h1 No orders to display
