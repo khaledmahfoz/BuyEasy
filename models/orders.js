@@ -3,13 +3,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
-  products: [
-    {
+  products: {
       product: { type: Object, required: true },
       quantity: { type: Number, required: true },
       state: {type: String, default: 'pending'}
-    }
-  ],
+  },
   user: {
    userId: {
       type: Schema.Types.ObjectId,

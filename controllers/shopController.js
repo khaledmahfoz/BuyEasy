@@ -28,27 +28,26 @@ exports.getCart = (req, res, next) => {
 }
 
 exports.postOrders = (req, res, next) => {
-   const {_id, email, address, cart} = req.user
-   req.user
-    .populate('cart.items.productId')
-    .execPopulate()
-    .then(user => {
-      let products = user.cart.items.map(elem => {
-         return {product: {...elem.productId._doc}, quantity: elem.quantity}   
+   const {_id, email, address} = req.user
+   req.user.populate('cart.items.productId').execPopulate()
+      .then(user => {
+         const products = user.cart.items.map(prod => {
+            return {products: {
+               product: {...prod.productId._doc}, 
+               quantity: prod.quantity
+            }, 
+            user:{
+               userId: _id, 
+               email, 
+               address
+            }}
+         })
+         return Order.insertMany(products)
       })
-      const order = new Order({
-         products: products,
-         user: {
-            userId: _id,
-            email: email,
-            address: address
-         }
+      .then((orders) => {
+         res.render('shop/orders', {title: 'orders', path: '/orders', orders})
       })
-      return order.save()
-   })
-   .then(() => {
-      res.redirect('/orders')
-   })
+      .catch(err => console.log(err))
 }
 
 exports.postCart = (req, res, next) => {

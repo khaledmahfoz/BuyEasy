@@ -4,7 +4,6 @@ block content
    
 block content
    main
-      //- -console.log(orders[0].products)
       .row.justify-content-center
          .col-lg-10
             if orders.length > 0
@@ -13,16 +12,17 @@ block content
                      tr
                         th(scope='col') Title
                         th(scope='col') Quantity
-                        th(scope='col') Price
+                        th(scope='col') Total price
                         th(scope='col') State
                   each order in orders
-                     each item in order.products
-                        tbody
-                           tr
-                              th.font-weight-normal(scope='row') #{item.product.title}
-                              td #{item.quantity}
-                              td #{item.product.price}
-                              td #{item.state}
+                     tbody
+                        tr
+                           -const prod = order.products
+                           th.font-weight-normal(scope='row') #{prod.product.title}
+                           td #{prod.quantity}
+                           td #{prod.product.price * prod.quantity}$
+                           td #{prod.state}
+
                         //- td 
                         //-    form(action="/orders", method="post")
                         //-       button.btn.btn-success(type='submit') Order
