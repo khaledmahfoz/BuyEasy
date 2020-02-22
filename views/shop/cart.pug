@@ -1,4 +1,38 @@
 extends ../layouts/main-layout
-
+block styles
+   link(rel="stylesheet", href="/css/cart.css")
 block content
-   h1 cart
+   main
+      .row.justify-content-center
+         if cart.length > 0
+            .col-8
+               table.table.text-center
+                  thead
+                     tr
+                        th(scope='col') Title
+                        th(scope='col') Quantity
+                        th(scope='col') Price
+                        th(scope='col') Remove
+
+                  each item in cart
+                     tbody
+                        tr
+                           th.font-weight-normal(scope='row') #{item.productId.title}
+                           td #{item.quantity}
+                           td #{item.quantity * item.productId.price}$
+                           td
+                              form(action="/cart-delete", method="post")
+                                 button.btn.btn-danger(type='submit') Delete
+                                 input(type="hidden", name="productId", value= item.productId._id)
+                                 input(type="hidden", name="_csrf", value=csrfToken)
+            .col-4
+               .card
+                  .card-body
+                     h3.mb-4.card-title Total Price
+                     h6.card-subtitle.mb-2 12$
+                     form.mt-4(action="/orders", method="post")
+                        button.btn.btn-success.btn-block(type='submit') Order
+                        input(type="hidden", name="_csrf", value=csrfToken)
+
+         else
+            h1 The cart is empty

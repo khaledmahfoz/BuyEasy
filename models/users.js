@@ -36,4 +36,31 @@ const userSchema = new Schema({
    }
 })
 
+userSchema.methods.addToCart = function(product) {
+   const existedCart = [...this.cart.items]
+   const productIndex = existedCart.findIndex(item => item.productId.toString() === product._id.toString())
+   if(productIndex >= 0){
+      existedCart[productIndex].quantity += 1
+   }else{
+      existedCart.push({productId: product._id, quantity: 1})
+   }
+   const updatedCart = {items: existedCart}
+   this.cart = updatedCart
+   return this.save()
+}
+
+userSchema.methods.removeFromCart = function(product) {
+   let existedCart = [...this.cart.items]
+   const productIndex = existedCart.findIndex(prod => prod.productId.toString() === product._id.toString())
+   const targetedProduct = existedCart[productIndex]
+   if(targetedProduct.quantity > 1){
+      targetedProduct.quantity -= 1
+   }else{
+      existedCart = existedCart.filter(prod => prod.productId.toString() !== product._id.toString())
+   }
+   const updatedCart = {items: existedCart}
+   this.cart = updatedCart
+   return this.save()
+}
+
 module.exports = mongoose.model('User', userSchema);

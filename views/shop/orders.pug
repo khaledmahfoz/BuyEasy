@@ -1,4 +1,37 @@
 extends ../layouts/main-layout
 
 block content
-   h1 orders
+   
+block content
+   main
+      //- -console.log(orders[0].products)
+      .row.justify-content-center
+         .col-lg-10
+            if orders.length > 0
+               table.table.text-center
+                  thead
+                     tr
+                        th(scope='col') Title
+                        th(scope='col') Quantity
+                        th(scope='col') Price
+                        th(scope='col') State
+                  each order in orders
+                     each item in order.products
+                        tbody
+                           tr
+                              th.font-weight-normal(scope='row') #{item.product.title}
+                              td #{item.quantity}
+                              td #{item.product.price}
+                              td #{item.state}
+                        //- td 
+                        //-    form(action="/orders", method="post")
+                        //-       button.btn.btn-success(type='submit') Order
+                        //-       input(type="hidden", name="_csrf", value=csrfToken)
+                        //-       input(type="hidden", name="productId", value= item.productId._id)
+                        //- td
+                        //-    form(action="/cart-delete", method="post")
+                        //-       button.btn.btn-danger(type='submit') Delete
+                        //-       input(type="hidden", name="_csrf", value=csrfToken)
+                        //-       input(type="hidden", name="productId", value= item.productId._id)
+            else
+               h1 The cart is empty

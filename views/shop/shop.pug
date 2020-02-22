@@ -15,7 +15,10 @@ block content
                            p.card-text #{product.price + '$'}
                            div.btnBox
                               a.btn.btn-outline-info(href=`/product/${product._id}`) Details
-                              a.btn.btn-success(href='#') Add to cart
+                              form(action="/cart", method="post")
+                                 button.btn.btn-success(type='submit') Add to cart
+                                 input(type="hidden", name="productId", value= product._id)
+                                 input(type="hidden", name="_csrf", value= csrfToken)
             else
                h1.mt-5 No products
     

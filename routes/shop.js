@@ -7,7 +7,13 @@ router.get('/', shopController.getShopProducts)
 
 router.get('/cart', isAuth, shopController.getCart)
 
+router.post('/cart', isAuth, shopController.postCart)
+
+router.post('/cart-delete', isAuth, shopController.deleteCart)
+
 router.get('/orders', isAuth, shopController.getOrders)
+
+router.post('/orders', isAuth, shopController.postOrders)
 
 router.get('/product/:prodId', shopController.getProductDetails)
 
