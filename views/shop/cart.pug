@@ -5,12 +5,12 @@ block content
    main
       .row.justify-content-center
          if cart.length > 0
-            .col-8
+            .col-12.col-md-8.px-0.px-md-3
                table.table.text-center
                   thead
                      tr
                         th(scope='col') Title
-                        th(scope='col') Quantity
+                        th(scope='col') Quan.
                         th(scope='col') Total price
                         th(scope='col') Remove
 
@@ -25,7 +25,7 @@ block content
                                  button.btn.btn-danger(type='submit') Delete
                                  input(type="hidden", name="productId", value= item.productId._id)
                                  input(type="hidden", name="_csrf", value=csrfToken)
-            .col-4
+            .col-12.col-sm-8.col-md-4
                .card
                   .card-body
                      h3.mb-4.card-title Total Price
@@ -35,4 +35,4 @@ block content
                         input(type="hidden", name="_csrf", value=csrfToken)
 
          else
-            h1 The cart is empty
+            h2 The cart is empty

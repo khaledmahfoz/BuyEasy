@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const mongoDBStore = require('connect-mongodb-session')(session)
 const csrf = require('csurf')
+const randomString = require('randomstring')
 const User = require('./models/users')
 const authRouter = require('./routes/auth')
 const adminRouter = require('./routes/admin')
@@ -23,16 +24,10 @@ const store = new mongoDBStore({
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: false}))
-app.use(session({secret: 'mysec', resave: false, saveUninitialized: false, store: store}))
+
+app.use(session({secret: 'mysecret', resave: false, saveUninitialized: false, cookie: {maxAge: 31556926000000}, store: store}))
+
 app.use(csrf())
-app.use((req, res, next) => {
-   res.locals.isLoggedIn = req.session.isLoggedIn
-   res.locals.csrfToken = req.csrfToken()
-   if(req.session.user){
-      res.locals.isAdmin = req.session.user.isAdmin
-   }
-   next()
-})
 
 app.use((req, res, next) => {
    if (!req.session.user) {
@@ -45,6 +40,17 @@ app.use((req, res, next) => {
      })
      .catch(err => console.log(err));
  });
+
+app.use((req, res, next) => {
+   res.locals.isLoggedIn = req.session.isLoggedIn
+   res.locals.csrfToken = req.csrfToken()
+   if(req.session.user){
+      res.locals.isAdmin = req.session.user.isAdmin
+      res.locals.userName = req.session.user.username
+   }
+   next()
+})
+
 
 app.use('/admin', adminRouter)
 app.use(shopRouter)

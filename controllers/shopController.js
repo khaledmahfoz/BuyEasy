@@ -1,11 +1,16 @@
 const Product = require('../models/products')
 const User = require('../models/users')
 const Order = require('../models/orders')
+const Catagory = require('../models/catagories')
 
 exports.getShopProducts = (req, res, next) => {
-   Product.find()
-      .then(products => {
-         res.render('shop/shop', {title: 'shop', path: '/', products})
+   Product.find().populate('catagoryId').exec()
+      .then(productsItems => {
+         Catagory.find()
+            .then(catagories => {
+               res.render('shop/shop', {title: 'shop', path: '/', productsItems, catagories})
+            })
+         // console.log(products)
       })
       .catch(err => console.log(err))
 }
@@ -85,5 +90,30 @@ exports.getOrders = (req, res, next) => {
    Order.find({'user.userId': req.user._id})
       .then(orders => {
          res.render('shop/orders', {title: 'orders', path: '/orders', orders})
+      })
+}
+
+exports.getCatagoryProducts = (req, res, next) => {
+   const catagoryId = req.params.catagId
+   
+   Catagory.findById(catagoryId)
+   .populate('products.productId')
+   .exec()
+      .then(catagory => {
+         Catagory.find()
+            .then(catagories => {
+               console.log(catagories)
+               const products = catagory.products.map(elem => elem.productId)
+               res.render('shop/shop', {title: 'shop', path: '/', productsItems: products, catagories, catagPath: `/by-catagory/${catagoryId}`})
+            })
+      })
+      .catch(err => console.log(err))
+}
+
+exports.postSearchProducts = (req, res, next) => {
+   const productTitle = req.body.prodTitle
+   Product.find({ title: { "$regex": productTitle, "$options": "i" } })
+      .then(products => {
+         res.render('shop/shop', {title: 'shop', path: '/', productsItems: products, catagories: null})
       })
 }

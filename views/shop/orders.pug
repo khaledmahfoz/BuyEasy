@@ -11,8 +11,8 @@ block content
                   thead
                      tr
                         th(scope='col') Title
-                        th(scope='col') Quantity
-                        th(scope='col') Total price
+                        th(scope='col') Quan.
+                        th(scope='col') T. price
                         th(scope='col') State
                   each order in orders
                      tbody.mb-3
@@ -34,4 +34,4 @@ block content
                         //-       input(type="hidden", name="_csrf", value=csrfToken)
                         //-       input(type="hidden", name="productId", value= item.productId._id)
          else
-            h1 No orders to display
+            h2 No orders to display

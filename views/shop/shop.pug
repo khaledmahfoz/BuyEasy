@@ -5,8 +5,8 @@ block content
    main
       .container
          .row.justify-content-center
-            if products.length > 0
-               each product in products
+            if productsItems.length > 0
+               each product in productsItems
                   .col.d-flex.justify-content-center
                      .card(style='width: 18rem')
                         div.prodImg(style=`background: url(${product.imgUrl})`)

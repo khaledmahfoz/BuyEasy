@@ -1,6 +1,13 @@
 extends ../layouts/main-layout
+block styles
+   link(rel="stylesheet", href="/css/form.css")
 block content
-   main
+   section
+      .d-flex.justify-content-center.mb-5
+         form(action='/admin/edit-manage-products', method='get').form-inline
+            h3.mr-5 Editing your products state!
+            button.btn.btn-warning.mb-2(type='submit' style= 'width: 120px; padding:10px 5px; color: #ffffff; font-size:17px') Edit
+
       .row.justify-content-center
          if orders.length > 0
             .col-lg-10
@@ -23,16 +30,5 @@ block content
                            td #{prod.product.price * prod.quantity}$
                            td #{order.user.address}
                            td #{prod.state}
-
-                        //- td 
-                        //-    form(action="/orders", method="post")
-                        //-       button.btn.btn-success(type='submit') Order
-                        //-       input(type="hidden", name="_csrf", value=csrfToken)
-                        //-       input(type="hidden", name="productId", value= item.productId._id)
-                        //- td
-                        //-    form(action="/cart-delete", method="post")
-                        //-       button.btn.btn-danger(type='submit') Delete
-                        //-       input(type="hidden", name="_csrf", value=csrfToken)
-                        //-       input(type="hidden", name="productId", value= item.productId._id)
          else
             h1 No orders to display

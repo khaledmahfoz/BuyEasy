@@ -19,6 +19,13 @@ block content
                      div.form-group
                         label(for="imgUrl") Image url
                         input(type="text" name="imgUrl" id="imgUrl" class="form-control")
+
+                     div.form-group
+                        label(for="catagory") Catagory
+                        select(name='catagory', id="catagory").form-control.custom-select.mr-sm-2
+                           each catagory in catagoryItems
+                              option(value=catagory._id) #{catagory.title}
+                           
                      
                      div.form-group
                         label(for="price") Price
@@ -38,11 +45,20 @@ block content
                      div.form-group
                         label(for="title") Title
                         input(type="text" name="title" id="title" class="form-control" value=product.title)
-
+                     
                      div.form-group
                         label(for="imgUrl") Image url
                         input(type="text" name="imgUrl" id="imgUrl" class="form-control" value=product.imgUrl)
                      
+                     div.form-group
+                        label(for="catagory") Catagory
+                        select(name='catagory', id="catagory").form-control.custom-select.mr-sm-2
+                           each catagory in catagoryItems
+                              if(product.catagoryId.title === catagory.title)
+                                 option(value=catagory._id selected) #{catagory.title}
+                              else
+                                 option(value=catagory._id) #{catagory.title}
+
                      div.form-group
                         label(for="price") Price
                         input(type="number" name="price" id="price" class="form-control" value=product.price)

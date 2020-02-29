@@ -19,6 +19,7 @@
     "express-session": "^1.17.0",
     "mongodb": "^3.5.3",
     "mongoose": "^5.9.1",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "randomstring": "^1.1.5"
   }
 }

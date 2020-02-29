@@ -6,7 +6,7 @@ const orderSchema = new Schema({
   products: {
       product: { type: Object, required: true },
       quantity: { type: Number, required: true },
-      state: {type: String, default: 'pending'}
+      state: {type: String, required: true, default: 'pending'}
   },
   user: {
    userId: {

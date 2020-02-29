@@ -18,4 +18,8 @@ router.get('/products', isAdmin, adminController.getAdminProducts)
 
 router.get('/manage-products', isAdmin, adminController.getManageProducts)
 
+router.get('/edit-manage-products', isAdmin, adminController.getEditManageProducts)
+
+router.post('/edit-manage-products', isAdmin, adminController.postEditManageProducts)
+
 module.exports = router

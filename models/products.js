@@ -18,6 +18,11 @@ const productSchema = new Schema({
       type: String,
       required: true
    },
+   catagoryId:{
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: 'Catagory'
+   },
    userId: {
       type: Schema.Types.ObjectId,
       required: true,

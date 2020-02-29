@@ -1,0 +1,6 @@
+section.search-sec.d-flex.justify-content-center
+   form.form-search.form-inline.d-flex.justify-content-center(action="/search", method="POST")
+      img.mr-2(src="/assets/images/SmallLogo.png", alt="logo")
+      input.ml-2#inputSearch.form-control(type='text' name="prodTitle" placeholder='Search by product name')
+      button.btn-search(type="submit") search
+      input(type="hidden", name="_csrf", value=csrfToken)

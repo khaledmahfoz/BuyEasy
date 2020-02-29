@@ -3,14 +3,18 @@
 body{
    font-family: 'Roboto', sans-serif;
 }
-nav.navbar{
+.row{
+   margin-right: 0 !important;
+   margin-left: 0 !important;
+}
+nav.navbar-main{
    background-color: #F4F7F6;
    min-height: 75px;
 }
 li.nav-item{
-   margin: 0 16px;
+   margin-right: 16px;
 }
-a.nav-link{
+#navbarNav a.nav-link{
    color: #2b2b2b !important;
    font-size: 17px
 }
@@ -18,5 +22,8 @@ a.nav-link{
    text-decoration: underline !important
 }
 main{
-   padding: 50px;
+   padding: 50px 0;
+}
+.row{
+   max-width: 100% !important;
 }

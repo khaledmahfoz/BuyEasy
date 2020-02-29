@@ -17,4 +17,8 @@ router.post('/orders', isAuth, shopController.postOrders)
 
 router.get('/product/:prodId', shopController.getProductDetails)
 
+router.get('/by-catagory/:catagId', shopController.getCatagoryProducts)
+
+router.post('/search', shopController.postSearchProducts)
+
 module.exports = router

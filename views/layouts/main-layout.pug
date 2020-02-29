@@ -6,17 +6,19 @@ html(lang="en")
       meta(http-equiv="X-UA-Compatible", content="ie=edge")
       link(rel="stylesheet",href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh", crossorigin="anonymous")
       link(rel="stylesheet", href="/css/main.css")
+      link(rel="stylesheet", href="/css/catagories.css")
+      link(rel="stylesheet", href="/css/search.css")
       block styles
       title #{title}
    body
       header
-         nav.navbar.navbar-expand-lg.navbar-light
+         nav.navbar.navbar-main.navbar-expand-xl.navbar-light.pl-3
 
             button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
                span.navbar-toggler-icon
                
             div#navbarNav.collapse.navbar-collapse.justify-content-between
-               ul.navbar-nav
+               ul.navbar-nav.align-items-center
                   li.nav-item
                      a.nav-link(href="/", class=(path === '/' ? 'active' : '')) Home
                   if(isLoggedIn)
@@ -32,8 +34,11 @@ html(lang="en")
                         li.nav-item
                            a.nav-link(href="/admin/manage-products", class=(path === '/manage-products' ? 'active' : '')) Manage-products
 
-               ul.navbar-nav
+               ul.navbar-nav.align-items-center
                   if(isLoggedIn)
+                     li.nav-item.d-flex.align-items-center
+                        img(src="/assets/images/user.png", alt="user")
+                        div #{userName}
                      li.nav-item
                         form(action="/logout", method="post")
                            button.btn.btn-danger(type="submit") Logout
@@ -44,6 +49,11 @@ html(lang="en")
 
                      li.nav-item
                         a.nav-link(href="/login", class=(path === '/login' ? 'active' : '')) Login
+
+      if(productsItems)
+         if(catagories)
+            include catagories.pug
+         include search.pug
 
 
       block content

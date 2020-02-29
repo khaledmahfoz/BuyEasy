@@ -9,20 +9,20 @@ exports.postSignup = (req, res, next) => {
    const {username, email, password, confirmPass, address} = req.body
    User.findOne({email: email})
       .then((userDoc) => {
-         if(userDoc){
+         if(userDoc || confirmPass !== password){
             return res.redirect('/signup')
          }
          return bcrypt.hash(password, 12)
-            .then(hashPass => {
-               const user = new User({
-                  username,
-                  email,
-                  password: hashPass,
-                  address      
-               })
-               return user.save()
+         .then(hashPass => {
+            const user = new User({
+               username,
+               email,
+               password: hashPass,
+               address      
             })
-            .then(() => res.redirect('/login'))
+            return user.save()
+         })
+         .then(() => res.redirect('/login'))
       })
       .catch(err => console.log(err))
 }
@@ -54,5 +54,7 @@ exports.postLogin = (req, res, next) => {
 }
 
 exports.postLogout = (req, res, next) => {
-   req.session.destroy(err => res.redirect('/login'))
+   req.session.destroy(err => {
+      res.redirect('/login')
+   })
 }

@@ -1,0 +1,12 @@
+section.catagory-sec
+   nav.navbar.navbar-expand-sm.pl-4
+      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#catagoryNav' aria-controls='catagoryNav' aria-expanded='false' aria-label='Toggle navigation') catagories
+         //- span.navbar-toggler-icon catagories
+         
+      div#catagoryNav.collapse.navbar-collapse.py-5
+         div.holding_catagories
+            h5(style="margin-bottom: 1.5rem") Search by catagory
+            ul.navbar-nav.navbar-nav-catagories
+               each catagory in catagories
+                  li.nav-item(class=(catagPath === `/by-catagory/${catagory._id}` ? 'act' : ''))
+                     a.nav-link(href=`/by-catagory/${catagory._id}`, class=(catagPath === `/by-catagory/${catagory._id}` ? 'actItem' : '')) #{catagory.title} (#{catagory.products.length})

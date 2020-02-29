@@ -18,6 +18,7 @@ block content
                               form(action="/admin/delete-product", method="post")
                                  button.btn.btn-danger(type='submit') Delete
                                  input(type="hidden", name="product", value=product._id)
+                                 input(type="hidden", name="catagoryId", value=product.catagoryId)
                                  input(type="hidden", name="_csrf", value= csrfToken)
             else
                h1.mt-5 No products

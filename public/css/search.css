@@ -1,0 +1,40 @@
+section.search-sec{
+   padding: 3rem 0;
+   background-color: #FFE600;
+}
+.form-search{
+   position: relative;
+}
+#inputSearch{
+   border-radius: 30px;
+   width: 350px;
+   padding-left: 20px;
+}
+.btn-search{
+   position: absolute;
+   right: 12px;
+   border: none;
+   background-color: #ffc107;
+   color: #fff;
+   border-radius: 30px;
+   padding: 2px 12px;
+}
+
+@media only screen and (max-width: 500px) {
+   .form-search{
+      flex-direction: column;
+      align-items: center;
+      max-width: 100%;
+   }
+   .form-search img{
+      margin-bottom: 1.2rem
+   }
+   .form-search input{
+      max-width: 95%;
+      margin: 0 !important
+   }
+   .btn-search{
+      right: 20px;
+      bottom: 5px;
+   }
+}
