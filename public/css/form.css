@@ -24,9 +24,17 @@ form .headline2{
    width: 100%;
    display: flex;
    justify-content: center;
-   /* border: 1px solid #2b2b2b; */
    padding: 30px 0;
    align-items: center;
    background-color: #FCFCFC;
    box-shadow: 1px 2px 3px -3px #2b2b2b;
+}
+
+@media only screen and (max-width: 510px){
+   .form-inline{
+      text-align: center;
+   }
+   .form-inline h3{
+      margin-right: 0 !important;
+   }
 }

@@ -16,33 +16,34 @@ block content
             .row.justify-content-center
                if orders.length > 0
                   .col-lg-10
-                     table.table.text-center
-                        thead
-                           tr
-                              th(scope='col') Email
-                              th(scope='col') Title
-                              th(scope='col') Quantity
-                              th(scope='col') Total price
-                              th(scope='col') Address
-                              th(scope='col') State
-
-                        each order in orders
-                           tbody
+                     div.table-responsive
+                        table.table.text-center
+                           thead
                               tr
-                                 -const prod = order.products
-                                 -const stateArr = [{value: 'pending'}, {value: 'accepted'}, {value: 'shipped'}]
-                                 th.font-weight-normal(scope='row') #{order.user.email}
-                                 td #{prod.product.title}
-                                 td #{prod.quantity}
-                                 td #{prod.product.price * prod.quantity}$
-                                 td #{order.user.address}
-                                 td
-                                    select(style="max-width: 200px", name=`${order._id}`).custom-select.mr-sm-2
-                                       each stateItem in stateArr
-                                          if(prod.state === stateItem.value)
-                                             option(value=stateItem.value, selected) #{stateItem.value}
-                                          else
-                                             option(value=stateItem.value) #{stateItem.value}
+                                 th(scope='col') Email
+                                 th(scope='col') Title
+                                 th(scope='col') Quan.
+                                 th(scope='col') T.price
+                                 th(scope='col') Address
+                                 th(scope='col') State
+
+                           each order in orders
+                              tbody
+                                 tr
+                                    -const prod = order.products
+                                    -const stateArr = [{value: 'pending'}, {value: 'accepted'}, {value: 'shipped'}]
+                                    th.font-weight-normal(scope='row') #{order.user.email}
+                                    td #{prod.product.title}
+                                    td #{prod.quantity}
+                                    td #{prod.product.price * prod.quantity}$
+                                    td #{order.user.address}
+                                    td
+                                       select(style="max-width: 200px; min-width:120px", name=`${order._id}`).custom-select.mr-sm-2
+                                          each stateItem in stateArr
+                                             if(prod.state === stateItem.value)
+                                                option(value=stateItem.value, selected) #{stateItem.value}
+                                             else
+                                                option(value=stateItem.value) #{stateItem.value}
                                        
                else
                   h1 No orders to display
