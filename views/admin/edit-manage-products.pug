@@ -9,11 +9,12 @@ block content
    section
       .d-flex.justify-content-center.mb-5
          form(action='/admin/edit-manage-products', method='post').form-inline
-            h3.mr-5 Finished Editing!
-            button.btn.btn-success.mb-2(type='submit' style= 'width: 120px; padding:10px 5px; color: #ffffff; font-size:17px') Update
-            input(type="hidden", name="_csrf", value=csrfToken)
+            .row.justify-content-center.align-items-center.py-5
+               h3.mr-5 Finished Editing!
+               button.btn.btn-success.mb-2(type='submit' style= 'width: 120px; padding:10px 5px; color: #ffffff; font-size:17px') Update
+               input(type="hidden", name="_csrf", value=csrfToken)
 
-            .row.justify-content-center
+            .w-100.d-flex.justify-content-center.py-5
                if orders.length > 0
                   .col-lg-10
                      div.table-responsive

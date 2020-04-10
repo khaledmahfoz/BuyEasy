@@ -10,15 +10,31 @@ block content
                   img(src="/assets/images/BigLogo.png", alt="logo")
 
                if !editMode
-                  form(class="form-frame" action="/admin/add-product/" method="POST")
-
+                  form(
+                     class="form-frame" 
+                     action="/admin/add-product/" 
+                     method="POST" 
+                     enctype="multipart/form-data")
+                     -let error
                      div.form-group
+                        -error = errors ? errors.find(err => err.param === 'title') : null
                         label(for="title") Title
-                        input(type="text" name="title" id="title" class="form-control")
+                        input.form-control(type="text" 
+                           name="title" 
+                           id="title" 
+                           class= error ? 'is-invalid' : ''
+                           value= data ? data.title : '')
+                        div.invalid-feedback #{error ? error.msg : ''}
 
-                     div.form-group
-                        label(for="imgUrl") Image url
-                        input(type="text" name="imgUrl" id="imgUrl" class="form-control")
+                     div.custom-file.my-3
+                        -error = errors ? errors.find(err => err.param === 'image') : null
+                        label.custom-file-label(for="image") Image
+                        input.custom-file-input(
+                           type="file" 
+                           name="image" 
+                           id="image"
+                           class= error ? 'is-invalid' : '')
+                        div.invalid-feedback.pb-2 #{error ? error.msg : ''}
 
                      div.form-group
                         label(for="catagory") Catagory
@@ -28,44 +44,66 @@ block content
                            
                      
                      div.form-group
+                        -error = errors ? errors.find(err => err.param === 'price') : null
                         label(for="price") Price
-                        input(type="number" name="price" id="price" class="form-control")
-                     
+                        input.form-control(type="number" name="price" id="price" class= error ? 'is-invalid' : '' value = data ? data.price : '')
+                        div.invalid-feedback #{error ? error.msg : ''}
+
                      div.form-group
+                        -error = errors ? errors.find(err => err.param === 'description') : null
                         label(for="description") Description
-                        textarea(name="description" id="description", row="5" class="form-control")
+                        textarea.form-control(name="description" id="description", row="5" class= error ? 'is-invalid' : '') #{data ? data.description : ''}
+                        div.invalid-feedback #{error ? error.msg : ''}
 
                      button(class="btn btn-primary" type="submit") Add Product
 
                      input(type="hidden", name="_csrf", value= csrfToken)
                else
 
-                  form(class="form-frame" action=`/admin/edit-product/${product._id}` method="POST")
-
+                  form(class="form-frame" action=`/admin/edit-product/${product._id}` method="POST" enctype="multipart/form-data")
+                     -let error
                      div.form-group
+                        -error = errors ? errors.find(e => e.param === 'title') : null
                         label(for="title") Title
-                        input(type="text" name="title" id="title" class="form-control" value=product.title)
-                     
-                     div.form-group
-                        label(for="imgUrl") Image url
-                        input(type="text" name="imgUrl" id="imgUrl" class="form-control" value=product.imgUrl)
+                        input.form-control(type="text" name="title" id="title" class= error ? 'is-invalid' : '' value= data ? data.title : product.title)
+                        div.invalid-feedback #{error ? error.msg : ''}
+                        
+                     div.custom-file.my-3
+                        -error = errors ? errors.find(err => err.param === 'image') : null
+                        label.custom-file-label(for="image") Image
+                        input.custom-file-input(
+                           type="file" 
+                           name="image" 
+                           id="image"
+                           class= error ? 'is-invalid' : '')
+                        div.invalid-feedback.pb-2 #{error ? error.msg : ''}
                      
                      div.form-group
                         label(for="catagory") Catagory
                         select(name='catagory', id="catagory").form-control.custom-select.mr-sm-2
                            each catagory in catagoryItems
-                              if(product.catagoryId.title === catagory.title)
-                                 option(value=catagory._id selected) #{catagory.title}
+                              if(data)
+                                 if(data.catagoryId === catagory.title)
+                                    option(value=catagory._id selected) #{catagory.title}
+                                 else
+                                    option(value=catagory._id) #{catagory.title}
                               else
-                                 option(value=catagory._id) #{catagory.title}
+                                 if(product.catagoryId.title === catagory.title)
+                                    option(value=catagory._id selected) #{catagory.title}
+                                 else
+                                    option(value=catagory._id) #{catagory.title}
 
                      div.form-group
+                        -error = errors ? errors.find(e => e.param === 'price') : null
                         label(for="price") Price
-                        input(type="number" name="price" id="price" class="form-control" value=product.price)
+                        input.form-control(type="number" name="price" id="price" class= error ? 'is-invalid' : '' value = data ? data.price : product.price)
+                        div.invalid-feedback #{error ? error.msg : ''}
                      
                      div.form-group
+                        -error = errors ? errors.find(e => e.param === 'description') : null
                         label(for="description") Description
-                        textarea(name="description" id="description", row="5" class="form-control") #{product.description}
+                        textarea.form-control(name="description" id="description", row="5" class= error ? 'is-invalid' : '') #{data ? data.description : product.description}
+                        div.invalid-feedback #{error ? error.msg : ''}
 
                      button(class="btn btn-primary" type="submit") Edit Product
 

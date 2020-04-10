@@ -1,0 +1,16 @@
+@media only screen and (min-width: 1200px){
+   .userIconSmall{
+      display: none !important;
+   }
+   .userIconBig{
+      display: flex !important;
+      align-items: center;
+   }
+   
+}
+@media only screen and (max-width: 1199px){
+   .logOutBtn{
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+   }
+}

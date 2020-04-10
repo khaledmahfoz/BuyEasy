@@ -2,11 +2,12 @@ extends ../layouts/main-layout
 block styles
    link(rel="stylesheet", href="/css/form.css")
 block content
-   section
+   section.manage_products_sec
       .d-flex.justify-content-center.mb-5
-         form(action='/admin/edit-manage-products', method='get').form-inline
-            h3.mr-5 Editing your products state!
-            button.btn.btn-warning.mb-2(type='submit' style= 'width: 120px; padding:10px 5px; color: #ffffff; font-size:17px') Edit
+         if orders.length > 0
+            form(action='/admin/edit-manage-products', method='get').form-inline
+               h3.mr-2.mb-3 Editing your products state!
+               button.btn.btn-warning.mb-2(type='submit' style= 'width: 120px; padding:10px 5px; color: #ffffff; font-size:17px') Edit
 
       .row.justify-content-center
          if orders.length > 0

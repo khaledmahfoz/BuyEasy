@@ -10,9 +10,8 @@ exports.getShopProducts = (req, res, next) => {
             .then(catagories => {
                res.render('shop/shop', {title: 'shop', path: '/', productsItems, catagories})
             })
-         // console.log(products)
       })
-      .catch(err => console.log(err))
+      .catch(err => next(err))
 }
 
 exports.getProductDetails = (req, res, next) => {
@@ -20,7 +19,7 @@ exports.getProductDetails = (req, res, next) => {
       .then(product => {
          res.render('shop/product-details', {title: 'product details', path: '/', product})
       })
-      .catch(err => console.log(err))
+      .catch(err => next(err))
 }
 
 exports.getCart = (req, res, next) => {
@@ -62,7 +61,7 @@ exports.postOrders = (req, res, next) => {
       .then(() => {
          res.redirect('/orders')
       })
-      .catch(err => console.log(err))
+      .catch(err => next(err))
 }
 
 exports.postCart = (req, res, next) => {
@@ -73,7 +72,7 @@ exports.postCart = (req, res, next) => {
       .then(() => {
          res.redirect('/cart')
       })
-      .catch(err => console.log(err))
+      .catch(err => next(err))
 }
 
 exports.deleteCart = (req, res, next) => {
@@ -102,12 +101,11 @@ exports.getCatagoryProducts = (req, res, next) => {
       .then(catagory => {
          Catagory.find()
             .then(catagories => {
-               console.log(catagories)
                const products = catagory.products.map(elem => elem.productId)
                res.render('shop/shop', {title: 'shop', path: '/', productsItems: products, catagories, catagPath: `/by-catagory/${catagoryId}`})
             })
       })
-      .catch(err => console.log(err))
+      .catch(err => next(err))
 }
 
 exports.postSearchProducts = (req, res, next) => {

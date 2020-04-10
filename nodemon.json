@@ -1,0 +1,6 @@
+{
+   "env": {
+      "MONGO_INFO": "mongodb+srv://khaled:Manvsnature123@cluster0-kxm2s.mongodb.net/shop",
+      "SESSION_SECRET": "9PecdV5nDEPbsG5leQ8g"
+   }
+}

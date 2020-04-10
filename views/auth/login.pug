@@ -10,14 +10,18 @@ block content
                   img(src="/assets/images/BigLogo.png", alt="logo")
 
                form(class="form-frame" action="/login" method="POST")
-
+                  -let error
                   div.form-group
+                     -error = errors ? errors.find(err => err.param === 'email') : null
                      label(for="email") Email
-                     input(type="email" name="email" id="email" class="form-control")
+                     input.form-control(type="email" name="email" id="email" class= error ? 'is-invalid' : '' value= data ? data.email : '')
+                     div.invalid-feedback #{error ? error.msg : ''}
 
                   div.form-group
+                     -error = errors ? errors.find(err => err.param === 'password') : null
                      label(for="password") Password
-                     input(type="text" name="password" id="password" class="form-control")
+                     input.form-control(type="password" name="password" id="password" class= error ? 'is-invalid' : '' value= data ? data.password : '')
+                     div.invalid-feedback #{error ? error.msg : ''}
 
                   button.mt-3(class="btn btn-primary" type="submit") Login
 

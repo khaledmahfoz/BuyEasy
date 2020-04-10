@@ -8,6 +8,7 @@ html(lang="en")
       link(rel="stylesheet", href="/css/main.css")
       link(rel="stylesheet", href="/css/catagories.css")
       link(rel="stylesheet", href="/css/search.css")
+      link(rel="stylesheet", href="/css/touches.css")
       block styles
       title #{title}
    body
@@ -16,7 +17,10 @@ html(lang="en")
 
             button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
                span.navbar-toggler-icon
-               
+            if(isLoggedIn || userName)
+               div.userIconSmall.d-flex.align-items-center
+                  img(src="/assets/images/user.png", alt="user")
+                  div #{userName}
             div#navbarNav.collapse.navbar-collapse.justify-content-between
                ul.navbar-nav.align-items-center
                   li.nav-item
@@ -35,11 +39,11 @@ html(lang="en")
                            a.nav-link(href="/admin/manage-products", class=(path === '/manage-products' ? 'active' : '')) Manage-products
 
                ul.navbar-nav.align-items-center
-                  if(isLoggedIn)
-                     li.nav-item.d-flex.align-items-center
+                  if(isLoggedIn || userName)
+                     li.userIconBig.nav-item.d-none
                         img(src="/assets/images/user.png", alt="user")
                         div #{userName}
-                     li.nav-item
+                     li.logOutBtn.nav-item
                         form(action="/logout", method="post")
                            button.btn.btn-danger(type="submit") Logout
                            input(type="hidden", name="_csrf", value= csrfToken)
