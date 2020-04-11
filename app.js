@@ -33,7 +33,7 @@ const fileStorage = multer.diskStorage({
       cb(null, 'images')
    },
    filename: (req, file, cb) => {
-      cb(null, `${randomstring.generate()}-${file.originalname}`)
+      cb(null, `${randomstring.generate()}-${file.originalname.replace(/\s/g, "")}`)
    }
 })
 

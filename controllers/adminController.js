@@ -15,10 +15,14 @@ exports.getAddProduct = (req, res, next) => {
 exports.postAddProduct = (req, res, next) => {
    const {title, catagory, price, description} = req.body
    const errors = validationResult(req)
+   console.log(req.file)
+   console.log(req.file.filename)
+   console.log(req.file.filename.replace(/\s/g, ""))
+
    if(errors.isEmpty()){
       const product = new Product({
          title,
-         imgUrl: '/'+req.file.filename,
+         imgUrl: '/'+req.file.filename.replace(/\s/g, ""),
          catagoryId: catagory,
          price,
          description,
@@ -90,7 +94,7 @@ exports.postEditProduct = (req, res, next) => {
             bool = product.catagoryId.toString() === catagory.toString()
             oldProductCatagory = product.catagoryId
             product.title = title,
-            product.imgUrl = req.file ? '/'+req.file.filename : product.imgUrl,
+            product.imgUrl = req.file ? '/'+req.file.filename.replace(/\s/g, "") : product.imgUrl,
             product.catagoryId = catagory,
             product.price = price,
             product.description = description
