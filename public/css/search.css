@@ -4,6 +4,7 @@ section.search-sec{
 }
 .form-search{
    position: relative;
+   flex-wrap: nowrap;
 }
 #inputSearch{
    border-radius: 30px;
