@@ -13,9 +13,8 @@
    opacity: .9;
 }
 .act{
-   background-color: #1EE8E8;
-   border-color: #1EE8E8 !important;
-   /* color: #fcfcfc !important */
+   background-color: var(--cyan);
+   border-color: var(--cyan) !important;
 }
 .actItem{
    color: #fcfcfc !important

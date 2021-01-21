@@ -9,11 +9,11 @@ const orderSchema = new Schema({
       state: {type: String, required: true, default: 'pending'}
   },
   user: {
-   userId: {
-      type: Schema.Types.ObjectId,
-      required: true,
-      ref: 'User'
-   },
+    userId: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
     email: {
       type: String,
       required: true
