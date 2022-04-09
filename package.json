@@ -1,31 +1,31 @@
 {
-  "name": "buyeasy",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "engines": {
-    "node": "10.16.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "start-dev": "nodemon app.js"
-  },
-  "author": "khaled Mahfoz",
-  "license": "ISC",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "compression": "^1.7.4",
-    "connect-mongodb-session": "^2.3.1",
-    "csurf": "^1.11.0",
-    "express": "^4.17.1",
-    "express-session": "^1.17.0",
-    "express-validator": "^6.4.0",
-    "helmet": "^3.22.0",
-    "mongoose": "^5.9.1",
-    "multer": "^1.4.2",
-    "pug": "^2.0.4",
-    "randomstring": "^1.1.5"
-  }
+	"name": "buyeasy",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"engines": {
+		"node": "14.16.0"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node app.js",
+		"start-dev": "nodemon app.js"
+	},
+	"author": "khaled Mahfoz",
+	"license": "ISC",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.19.0",
+		"compression": "^1.7.4",
+		"connect-mongodb-session": "^2.3.1",
+		"csurf": "^1.11.0",
+		"express": "^4.17.1",
+		"express-session": "^1.17.0",
+		"express-validator": "^6.4.0",
+		"helmet": "^3.22.0",
+		"mongoose": "^5.9.1",
+		"multer": "^1.4.2",
+		"pug": "^2.0.4",
+		"randomstring": "^1.1.5"
+	}
 }
