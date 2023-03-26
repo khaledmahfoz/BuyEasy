@@ -108,7 +108,11 @@ app.use((err, req, res, next) => {
 });
 
 mongoose
-	.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+	.connect(db, {
+		dbName: "shop",
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	})
 	.then(() => {
 		app.listen(process.env.PORT || 8000);
 	})
