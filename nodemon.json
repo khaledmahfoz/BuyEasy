@@ -1,6 +1,6 @@
 {
 	"env": {
-		"MONGO_INFO": "mongodb://khaled:Manvsnature123@cluster0-shard-00-00.kxm2s.mongodb.net:27017,cluster0-shard-00-01.kxm2s.mongodb.net:27017,cluster0-shard-00-02.kxm2s.mongodb.net:27017/?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority",
+		"MONGO_INFO": "mongodb+srv://khaled:Manvsnature123@cluster0.kxm2s.mongodb.net/?retryWrites=true&w=majority",
 		"SESSION_SECRET": "9PecdV5nDEPbsG5leQ8g"
 	}
 }

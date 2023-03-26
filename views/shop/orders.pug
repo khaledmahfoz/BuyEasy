@@ -23,15 +23,6 @@ block content
                            td #{prod.product.price * prod.quantity}$
                            td #{prod.state}
 
-                        //- td 
-                        //-    form(action="/orders", method="post")
-                        //-       button.btn.btn-success(type='submit') Order
-                        //-       input(type="hidden", name="_csrf", value=csrfToken)
-                        //-       input(type="hidden", name="productId", value= item.productId._id)
-                        //- td
-                        //-    form(action="/cart-delete", method="post")
-                        //-       button.btn.btn-danger(type='submit') Delete
-                        //-       input(type="hidden", name="_csrf", value=csrfToken)
-                        //-       input(type="hidden", name="productId", value= item.productId._id)
+                   
          else
             h2 No orders to display

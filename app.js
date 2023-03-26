@@ -23,9 +23,7 @@ const store = new mongoDBStore({
 	uri: db,
 	collection: "sessions",
 });
-store.on("error", function (error) {
-	console.log(error);
-});
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "images")));
 app.use(bodyParser.urlencoded({ extended: false }));
